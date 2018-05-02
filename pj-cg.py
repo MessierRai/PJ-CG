@@ -611,7 +611,7 @@ def desenho():
     glPopMatrix()
 
     
-    #paredesSuperior()
+    paredesSuperior()
 
     #coluna frente direita
     glPushMatrix()
