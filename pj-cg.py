@@ -382,6 +382,103 @@ def suporteGiratorio():
 
     glPopMatrix()
 
+def luminaria():
+    glPushMatrix()
+    
+    glColor3f(1.0, 0.4, 0.0) # cor RGB
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformaÃ§oes no objeto
+    glTranslate( 0.0, 0.4, 0.22)  #TranstaÃ§ao do objeto
+    glRotatef(90, 1.0, 0.0, 0.0)     #RotaÃ§ao do objeto
+    glutSolidCylinder(0.03, 0.2, 5, 3) #(raio, comprimento, faces, nao sei o que é)
+    glPopMatrix()
+
+    
+    glColor3f(1.0, 0.4, 0.0) # cor RGB
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformaÃ§oes no objeto
+    glTranslate( 0.0, 0.4, -0.22)  #TranstaÃ§ao do objeto
+    glRotatef(90, 1.0, 0.0, 0.0)     #RotaÃ§ao do objeto
+    glutSolidCylinder(0.03, 0.2, 5, 3) #(raio, comprimento, faces, nao sei o que é)
+    glPopMatrix()
+    
+#parte mais gordinha da luminária
+
+    glColor3f(1.0, 0.4, 0.0) # cor RGB
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformaÃ§oes no objeto
+    #glTranslate( -0.5, 0.0, 0.0)  #TranstaÃ§ao do objeto
+    glRotatef(-90, 1.0, 0.0, 0.0)     #RotaÃ§ao do objeto
+    cont = 1
+    while (cont <= 8): #quanto maior mais fino a ponta( a quant de voltas)
+        cont += 1.0
+        glutSolidTorus(0.02,0.2,3,6)
+        glTranslate( 0.0, 0.0, 0.035)
+    glPopMatrix()
+
+
+    #cilindro mrio/cima
+    glColor3f(1.0, 0.4, 0.0) # cor RGB
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformaÃ§oes no objeto
+    glTranslate( 0.0, 0.6, 0.0)  #TranstaÃ§ao do objeto
+    glRotatef(90, 1.0, 0.0, 0.0)     #RotaÃ§ao do objeto
+    glutSolidCylinder(0.03, 0.2, 5, 3) #(raio, comprimento, faces, nao sei o que é)
+    glPopMatrix()
+
+    #cilindro deitado
+    glColor3f(1.0, 0.4, 0.0) # cor RGB
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformaÃ§oes no objeto
+    glTranslate( 0.0, 0.4, 0.25)   #TranstaÃ§ao do objeto
+    glRotatef(180, 0.0, 1.0, 0.0)     #RotaÃ§ao do objeto
+    glutSolidCylinder(0.03, 0.5, 5, 3) #(raio, comprimento, faces, nao sei o que é)
+    glPopMatrix()
+
+    glColor3f(1.0, 0.4, 0.0) # cor RGB
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformaÃ§oes no objeto
+    glTranslate( 0.0, 0.25, 0.0)   #TranstaÃ§ao do objeto
+    glRotatef(90, 1.0, 0.0, 0.0)     #RotaÃ§ao do objeto
+    glutSolidCylinder(0.2, 0.002, 6, 3) #(raio, comprimento, faces, nao sei o que é)
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(1.0, 1.0, 1.0)
+    glutSolidSphere(0.1, 5, 30, 30)
+    glPopMatrix()
+    
+    glPopMatrix()
+
+def luminaria_central():
+    glPushMatrix()
+    
+    glColor3f(0.0, 0.0, 0.0) # cor RGB
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformaçoes no objeto
+    glScale(1.0,0.4,1.0)
+    glutSolidCube(1)
+    glPopMatrix()
+
+    glColor3f(1.0, 1.0, 1.0) # cor RGB
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformaçoes no objeto
+    glTranslate(0.25,-0.2,0.3)
+    glutSolidSphere(0.15,10,10)
+    glPopMatrix()
+
+    glColor3f(1.0, 1.0, 1.0) # cor RGB
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformaçoes no objeto
+    glTranslate(0.25,-0.2,-0.3)
+    glutSolidSphere(0.15,10,10)
+    glPopMatrix()
+
+    glColor3f(1.0, 1.0, 1.0) # cor RGB
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformaçoes no objeto
+    glTranslate(-0.25,-0.2,-0.3)
+    glutSolidSphere(0.15,10,10)
+    glPopMatrix()
+
+    glColor3f(1.0, 1.0, 1.0) # cor RGB
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformaçoes no objeto
+    glTranslate(-0.25,-0.2,0.3)
+    glutSolidSphere(0.15,10,10)
+    glPopMatrix()
+    
+    glPopMatrix()
+
 def desenho():
     global abertoPorta
     global temp
@@ -391,7 +488,52 @@ def desenho():
    
     eixos()
 
-    
+    glPushMatrix()
+    glTranslate(-2.2, -0.1, 1.7)
+    glutSolidSphere(0.05, 10, 10, 10)
+    glPopMatrix()
+
+    #luminaria vitrine - centro
+    glPushMatrix()
+    glTranslate(-1.1, -0.2, 1.7)
+
+    glPushMatrix()
+    glScale(0.4, 0.4, 0.4)
+    luminaria()
+    glPopMatrix()
+
+    glPopMatrix()
+
+    #luminaria vitrine - esquerda
+    glPushMatrix()
+    glTranslate(-2.2, -0.2, 1.7)
+
+    glPushMatrix()
+    glScale(0.4, 0.4, 0.4)
+    luminaria()
+    glPopMatrix()
+
+    glPopMatrix()
+
+    #luminaria vitrine - direita
+    glPushMatrix()
+    glTranslate(0.0, -0.2, 1.7)
+
+    glPushMatrix()
+    glScale(0.4, 0.4, 0.4)
+    luminaria()
+    glPopMatrix()
+
+    glPopMatrix()
+
+    ##luminaria centro
+    glPushMatrix()
+    glScale(0.7, 0.7, 0.7)
+    luminaria_central()
+    glPopMatrix()
+
+    glPushMatrix()
+    glTranslate(0.0, 0.0, 2.0)
 ########################
     #suporte giratorio
     glPushMatrix()
@@ -561,7 +703,7 @@ def desenho():
     glPopMatrix()
 
     ############ teto
-    glColor3f(.0, .0, .0)
+    glColor3f(1.0, 1.0, 1.0)
     glPushMatrix()
     glTranslate(0.0, 2.05, 0.0)
 
@@ -728,6 +870,9 @@ def desenho():
     glDisable(GL_BLEND)
     glPopMatrix()
 
+    glPopMatrix()
+
+
 
     glutPostRedisplay()
 
@@ -742,15 +887,21 @@ def iluminacao_da_cena():
     luzAmbiente1=[0.0,0.0,0.0,1.0]
     luzDifusa1=[1.0,1.0,1.0,1.0]  # ; // "cor"
     luzEspecular1 = [0.0, 0.0, 0.0, 0.0]  #;// "brilho"
-    posicaoLuz1=[2.0, -0.5, -2.0, 1.0]  # Ãºltima coord como 0 pra funcionar como vetor da luz direcional
+    posicaoLuz1=[-1.1, -0.15, 1.7, 1.0]  # Ãºltima coord como 0 pra funcionar como vetor da luz direcional
     direcao1 = [0.0, -3.0, 0.0]
 
 
     luzAmbiente2=[0.0,0.0,0.0,1.0]
     luzDifusa2=[1.0, 1.0, 1.0, 1.0]  # ; // "cor"
     luzEspecular2 = [0.0, 0.0, 0.0, 0.0]  #;// "brilho"
-    posicaoLuz2=[-2.0, -0.5, -1.0, 1.0]  # Ãºltima coord como 0 pra funcionar como vetor da luz direcional
+    posicaoLuz2=[-0.0, -0.1, 1.7, 1.0]  # Ãºltima coord como 0 pra funcionar como vetor da luz direcional
     direcao2 = [0.0, -3.0, 0.0]  # direÃ§Ã£o do vetor do spot
+
+    luzAmbiente3=[0.0,0.0,0.0,1.0]
+    luzDifusa3=[1.0, 1.0, 1.0, 1.0]  # ; // "cor"
+    luzEspecular3 = [0.0, 0.0, 0.0, 0.0]  #;// "brilho"
+    posicaoLuz3=[-2.2, -0.1, 1.7, 1.0]  # Ãºltima coord como 0 pra funcionar como vetor da luz direcional
+    direcao3 = [0.0, -3.0, 0.0]  # direÃ§Ã£o do vetor do spot
 
     especularidade=[1.0,1.0,1.0,1.0]
     especMaterial = 60;
@@ -778,7 +929,7 @@ def iluminacao_da_cena():
     glLightfv(GL_LIGHT1, GL_SPECULAR, luzEspecular1 )
     glLightfv(GL_LIGHT1, GL_POSITION, posicaoLuz1 )
     glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, direcao1); #direcao da luz
-    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 63); # angulo do cone, de 0 a 180.
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 10); # angulo do cone, de 0 a 180.
 
     # Define os parametros da luz de numero 2 / bancada
     glLightfv(GL_LIGHT2, GL_AMBIENT, luzAmbiente2)
@@ -786,7 +937,15 @@ def iluminacao_da_cena():
     glLightfv(GL_LIGHT2, GL_SPECULAR, luzEspecular2 )
     glLightfv(GL_LIGHT2, GL_POSITION, posicaoLuz2 )
     glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, direcao2); #direcao da luz
-    glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 63); # angulo do cone, de 0 a 180.
+    glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 10); # angulo do cone, de 0 a 180.
+
+    # Define os parametros da luz de numero 2 / bancada
+    glLightfv(GL_LIGHT3, GL_AMBIENT, luzAmbiente3)
+    glLightfv(GL_LIGHT3, GL_DIFFUSE, luzDifusa3 )
+    glLightfv(GL_LIGHT3, GL_SPECULAR, luzEspecular3 )
+    glLightfv(GL_LIGHT3, GL_POSITION, posicaoLuz3 )
+    glLightfv(GL_LIGHT3, GL_SPOT_DIRECTION, direcao3); #direcao da luz
+    glLightf(GL_LIGHT3, GL_SPOT_CUTOFF, 10); # angulo do cone, de 0 a 180.
 
 
     glEnable(GL_COLOR_MATERIAL)
@@ -808,8 +967,10 @@ def iluminacao_da_cena():
     # Habilita a luz de nÃºmero 2
     if estadoluz2 == 1:
         glEnable(GL_LIGHT2)
+        glEnable(GL_LIGHT3)
     else:
         glDisable(GL_LIGHT2)
+        glDisable(GL_LIGHT3)
 
     # Habilita o depth-buffering
     glEnable(GL_DEPTH_TEST)
@@ -969,9 +1130,11 @@ def Teclado (tecla, x, y):
         if estadoluz2 == 0:
             estadoluz2 = 1
             glEnable(GL_LIGHT2)
+            glEnable(GL_LIGHT3)
         else:
             estadoluz2 = 0
-            glDisable(GL_LIGHT2)        
+            glDisable(GL_LIGHT2)
+            glDisable(GL_LIGHT3)       
 
 
     tela()
