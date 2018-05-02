@@ -52,12 +52,7 @@ def eixos():      #desenha os eixos x e y do plano cartesiano.
     glutSolidCylinder(0.01, 4.0, 4, 10)
     glPopMatrix()
 
-
-def desenho():
-
-    eixos()
-    
-
+def luminaria_central():
     glPushMatrix()
     
     glColor3f(1.0, 0.4, 0.0) # cor RGB
@@ -91,6 +86,14 @@ def desenho():
     glPopMatrix()
     
     glPopMatrix()
+
+
+def desenho():
+
+    eixos()
+    
+    luminaria_central()
+    
 
 
 
