@@ -479,6 +479,92 @@ def luminaria_central():
     
     glPopMatrix()
 
+def cabide(translate_x, translate_y, translate_z, rotacao_x, rotacao_y, rotacao_z):
+    glColor3f(1, 0, 1.025)
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(translate_x, translate_y + 0.5, translate_z)  #Transtacao do objeto
+    glRotatef(90, rotacao_x, rotacao_y, rotacao_z)
+    glScale(0.1, 1.0, 0.04)
+    glutSolidCube(0.5)
+    glPopMatrix()
+
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(translate_x + 0.11,translate_y + 0.63, translate_z)  #Transtacao do objeto
+    glRotatef(45, rotacao_x, rotacao_y, rotacao_z)
+    glScale(0.1, 0.7, 0.04)
+    glutSolidCube(0.5)
+    glPopMatrix()
+
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(translate_x - 0.11,translate_y + 0.63, translate_z)  #Transtacao do objeto
+    glRotatef(-45, rotacao_x, rotacao_y, rotacao_z)
+    glScale(0.1, 0.7, 0.04)
+    glutSolidCube(0.5)
+    glPopMatrix()
+
+def cabo(translate_x, translate_y, translate_z, rotacao_x, rotacao_y, rotacao_z):
+    glColor3f(0, 0, 0) # cor RGB
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformaçoes no objeto
+    glTranslate(translate_x, translate_y, translate_z)  #Transtaçao do objeto
+    glScalef(3, 1, 0.4)
+    glRotatef(90, rotacao_x, rotacao_y, rotacao_z)     #Rotaçao do objeto
+    glutSolidCylinder(0.01, 4.0, 50, 50)
+
+    glPopMatrix()
+
+def camisa(translate_x, translate_y, translate_z, rotacao_x, rotacao_y, rotacao_z, cor_R, cor_G, cor_B):
+    glColor3f(cor_R, cor_G, cor_B)
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(translate_x, translate_y, translate_z)  #Transtacao do objeto
+    glRotatef(180, rotacao_x, rotacao_y, rotacao_z)
+    glScale(0.4, 0.7, 0.03)
+    glutSolidCube(1.0)
+    glPopMatrix()
+
+    #manga esq
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(translate_x - 0.3, translate_y + 0.175, translate_z)  #Transtacao do objeto
+    glRotatef(-60, rotacao_x, rotacao_y, rotacao_z)
+    glScale(0.4, 0.7, 0.05)
+    glutSolidCube(0.5)
+    glPopMatrix()
+
+    #manga dir
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(translate_x + 0.3, translate_y + 0.175, translate_z)  #Transtacao do objeto
+    glRotatef(60, rotacao_x, rotacao_y, rotacao_z)
+    glScale(0.4, 0.7, 0.05)
+    glutSolidCube(0.5)
+    glPopMatrix()
+
+def chamaTudo():
+    camisa(0, 0, 0, 0, 0, 0.6, 0, 0, 0)
+    camisa(0, 0, 0.2, 0, 0, 0.6, 1, 0, 0)
+    camisa(0, 0, 0.4, 0, 0, 0.6, 0, 1, 0)
+    camisa(0, 0, 0.6, 0, 0, 1.5, 0, 0, 1)
+    camisa(0, 0, 0.8, 0, 0, 1.5, 1, 1, 0)
+    camisa(0, 0, 1, 0, 0, 1.5, 0, 1, 1)
+    cabide(0, -0.25, 0.0, 0, 0, 2)
+    cabide(0, -0.25, 0.2, 0, 0, 2)
+    cabide(0, -0.25, 0.4, 0, 0, 2)
+    cabide(0, -0.25, 0.6, 0, 0, 2)
+    cabide(0, -0.25, 0.8, 0, 0, 2)
+    cabide(0, -0.25, 1, 0, 0, 2)
+    cabo(0, 0.5, -0.4,0, 0, 1)
+    cabo(0, 0.5, -2, 0, 0, 1)
+    camisa(0, 0, -1.8, 0, 0, 0.6, 0.7, 0.7, 0.7)
+    camisa(0, 0, -1.6, 0, 0, 0.6, 0.2, 1, 0.3)
+    camisa(0, 0, -1.4, 0, 0, 0.6, 0.6, 0.2, 1)
+    camisa(0, 0, -1.2, 0, 0, 0.6, 0.6, 0, 0)
+    camisa(0, 0, -1.0, 0, 0, 0.6, 1, 0.1, 0.9)
+    camisa(0, 0, -0.8, 0, 0, 0.6, 0.4, 0, 1)
+    cabide(0, -0.25, -1.8, 0, 0, 2)
+    cabide(0, -0.25, -1.6, 0, 0, 2)
+    cabide(0, -0.25, -1.4, 0, 0, 2)
+    cabide(0, -0.25, -1.2, 0, 0, 2)
+    cabide(0, -0.25, -1.0, 0, 0, 2)
+    cabide(0, -0.25, -0.8, 0, 0, 2)
+
 def desenho():
     global abertoPorta
     global temp
