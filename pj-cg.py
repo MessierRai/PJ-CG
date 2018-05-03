@@ -361,8 +361,9 @@ def suporteGiratorio():
 
     glPushMatrix()
     glColor3f(0.0, 0.7, 0.7)
-    glTranslate(0.0, -1.7, 0.0)
-    glutSolidTeapot(0.2)
+    glTranslate(-0.1, -1.96, 0.0)
+    #glutSolidTeapot(0.2)
+    bolsa()
     glPopMatrix()
 
     #suporte
@@ -370,14 +371,14 @@ def suporteGiratorio():
     glPushMatrix()
     glRotatef(90, 1.0, 0.0, 0.0)
     glTranslate(0.0, 0.0, 1.84)
-    glutSolidCylinder(0.3, 0.1, 20, 20)
+    glutSolidCylinder(0.3, 0.06, 20, 20)
     glPopMatrix()
 
     #eixo
     glPushMatrix()
     glRotatef(90, 1.0, 0.0, 0.0)
     glTranslate(0.0, 0.0, 1.84)
-    glutSolidCylinder(0.09, 0.6, 20, 20)
+    glutSolidCylinder(0.07, 0.5, 20, 20)
     glPopMatrix()
 
     glPopMatrix()
@@ -449,7 +450,7 @@ def luminaria_central():
     
     glColor3f(0.0, 0.0, 0.0) # cor RGB
     glPushMatrix()                # Push e Pop Isolam os efeitos das transformaçoes no objeto
-    glScale(1.0,0.4,1.0)
+    glScale(1.0,0.3,1.0)
     glutSolidCube(1)
     glPopMatrix()
 
@@ -538,6 +539,7 @@ def camisa(translate_x, translate_y, translate_z, rotacao_x, rotacao_y, rotacao_
     glPopMatrix()
 
 def chamaTudo():
+    """
     camisa(0, 0, 0, 0, 0, 0.6, 0, 0, 0)
     camisa(0, 0, 0.2, 0, 0, 0.6, 1, 0, 0)
     camisa(0, 0, 0.4, 0, 0, 0.6, 0, 1, 0)
@@ -552,6 +554,8 @@ def chamaTudo():
     cabide(0, -0.25, 0.8, 0, 0, 2)
     cabide(0, -0.25, 1, 0, 0, 2)
     cabo(0, 0.5, -0.4,0, 0, 1)
+    """
+
     cabo(0, 0.5, -2, 0, 0, 1)
     camisa(0, 0, -1.8, 0, 0, 0.6, 0.7, 0.7, 0.7)
     camisa(0, 0, -1.6, 0, 0, 0.6, 0.2, 1, 0.3)
@@ -560,8 +564,8 @@ def chamaTudo():
     camisa(0, 0, -1.0, 0, 0, 0.6, 1, 0.1, 0.9)
     camisa(0, 0, -0.8, 0, 0, 0.6, 0.4, 0, 1)
     camisa(0, 0, -0.6, 0, 0, 1.5, 0, 1, 1)
-    camisa(0, 0, -0.4, 0, 0, 1.5, 0, 1, 1)
-    camisa(0, 0, -0.2, 0, 0, 1.5, 0, 1, 1)
+    #camisa(0, 0, -0.4, 0, 0, 1.5, 0, 1, 1)
+    #camisa(0, 0, -0.2, 0, 0, 1.5, 0, 1, 1)
     cabide(0, -0.25, -1.8, 0, 0, 2)
     cabide(0, -0.25, -1.6, 0, 0, 2)
     cabide(0, -0.25, -1.4, 0, 0, 2)
@@ -569,8 +573,8 @@ def chamaTudo():
     cabide(0, -0.25, -1.0, 0, 0, 2)
     cabide(0, -0.25, -0.8, 0, 0, 2)
     cabide(0, -0.25, -0.6, 0, 0, 2)
-    cabide(0, -0.25, -0.4, 0, 0, 2)
-    cabide(0, -0.25, -0.2, 0, 0, 2)
+    #cabide(0, -0.25, -0.4, 0, 0, 2)
+    #cabide(0, -0.25, -0.2, 0, 0, 2)
 
 
 def bolsa():
@@ -629,6 +633,30 @@ def calca():
     glutSolidCylinder(0.25, 0.1, 10, 10)
     glPopMatrix()
 
+def balcao():
+
+    glPushMatrix()
+    glTranslate(-2.5, -2.1, 0.55)
+
+    glColor3f(1.0, 1.0, 1.0)
+    glPushMatrix()
+    glScale(0.5, 0.7, 1.5)
+    glutSolidCube(1)
+    glPopMatrix()
+
+    glPopMatrix()
+
+    glPushMatrix()
+    glTranslate(-2.5, -1.75, 0.55)
+
+    glColor3f(1.0, 0.0, 0.0)
+    glPushMatrix()
+    glScale(0.6, 0.05, 1.6)
+    glutSolidCube(1)
+    glPopMatrix()
+
+    glPopMatrix()
+
 def desenho():
     global abertoPorta
     global temp
@@ -638,14 +666,37 @@ def desenho():
    
     eixos()
 
+    balcao()
+
+    ######## camisas - andar baixo
     glPushMatrix()
-    glTranslate(0.0, -1.0, 0.0)
+    glRotatef(90, 0.0, 1.0, 0.0)
+    glTranslate(1.5, -1.7, 0.4)
+    chamaTudo()
+    glPopMatrix()
+
+    glPushMatrix()
+    glRotatef(90, 0.0, 1.0, 0.0)
+    glTranslate(1.5, -1.7, 1.6)
+    chamaTudo()
+    glPopMatrix()
+
+    glPushMatrix()
+    glRotatef(90, 0.0, 1.0, 0.0)
+    glTranslate(1.5, -1.7, 2.8)
     chamaTudo()
     glPopMatrix()
 
     glPushMatrix()
     glTranslate(-2.2, -0.1, 1.7)
     glutSolidSphere(0.05, 10, 10, 10)
+    glPopMatrix()
+
+    ##camisas andar superior frente tv
+    glPushMatrix()
+    #glRotatef(90, 0.0, 1.0, 0.0)
+    glTranslate(-1.4, 0.5, 0.4)
+    chamaTudo()
     glPopMatrix()
 
     #luminaria vitrine - centro
@@ -683,7 +734,8 @@ def desenho():
 
     ##luminaria centro
     glPushMatrix()
-    glScale(0.7, 0.7, 0.7)
+    glScale(0.7, 0.5, 0.7)
+    glTranslate(0.0, -0.1, 0.0)
     luminaria_central()
     glPopMatrix()
 
@@ -692,16 +744,10 @@ def desenho():
 ########################
     #suporte giratorio
     glPushMatrix()
-    glTranslate(-1.1, 0.0, -0.3)
+    glTranslate(-1.1, -0.1, -0.3)
     suporteGiratorio()
     glPopMatrix()
 
-    #motor
-    glPushMatrix()
-    glRotatef(90, 1.0, 0.0, 0.0)
-    glTranslate(-1.1, -0.3, 2.35)
-    glutSolidCylinder(0.2, 0.1, 20, 20)
-    glPopMatrix()
 ########################
 
 
@@ -726,7 +772,7 @@ def desenho():
 
     ########## TV
     glPushMatrix()
-    glTranslate(0.0, -0.6, -4.0)
+    glTranslate(-0.5, 1.7, -3.9)
 
     tv()
     
@@ -900,10 +946,10 @@ def desenho():
             if(temp <= 87):
                 temp += x
                 
-    if(angulo < 15 and abertoPorta == 0):
-        abertoPorta = 1
-    elif(angulo >= 15 and abertoPorta == 1):
-        abertoPorta = 0
+    #if(angulo < 15 and abertoPorta == 0):
+    #    abertoPorta = 1
+    #elif(angulo >= 15 and abertoPorta == 1):
+    #    abertoPorta = 0
 
     ##############porta direita
     glPushMatrix()
