@@ -565,6 +565,63 @@ def chamaTudo():
     cabide(0, -0.25, -1.0, 0, 0, 2)
     cabide(0, -0.25, -0.8, 0, 0, 2)
 
+
+def bolsa():
+    #base da bolsa
+    glColor3f(0, 1, 0)
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(0.12, 0.25, 0)  #Transtacao do objeto
+    glScalef(1, 0.5, 0.5)
+    glutSolidCube(0.5)
+    glPopMatrix()
+
+
+
+    glColor3f(1, 0, 0)
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(0.13, 0.37, 0)  #Transtacao do objeto
+    glScalef(1, 0.5, 0.5)
+    glutSolidCube(0.1)
+    glPopMatrix()
+
+def calca():
+    #Perna esquerda
+    glColor3f(0, 0, 1)
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(0.12, 0.25, 0)  #Transtacao do objeto
+    glRotatef(-5, 0.0, 0.5, 0.5)     #Rotaçao do objeto
+    glScalef(0.4, 1.9, 0.1)
+    glutSolidCube(0.5)
+    glPopMatrix()
+
+    #Perna direita
+    glColor3f(0, 0, 1)
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(0.40, 0.25, 0)  #Transtacao do objeto
+    glRotatef(5, 0.0, 0.5, 0.5)     #Rotaçao do objeto
+    glScalef(0.4, 1.9, 0.1)
+    glutSolidCube(0.5)
+    glPopMatrix()
+
+    #Base da calça
+    glColor3f(0, 0, 1)
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(0.25, 0.5, 0)  #Transtacao do objeto
+    glRotatef(90, 0.0, 0.0, 1.0)     #Rotaçao do objeto
+    glScalef(0.5, 0.40, 0)
+    glutSolidCube(1.0)
+    glPopMatrix()
+
+
+    #boca da calça
+    glColor3f(0, 0, 0)
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(0.25, 0.7, 0.0)  #Transtacao do objeto
+    glRotatef(90, 1.0, 0.0, 0.0)     #Rotaçao do objeto
+    glScalef(1, 0.2, 1)
+    glutSolidCylinder(0.25, 0.1, 10, 10)
+    glPopMatrix()
+
 def desenho():
     global abertoPorta
     global temp
