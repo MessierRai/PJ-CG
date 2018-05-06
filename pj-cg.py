@@ -28,6 +28,10 @@ global angulo1
 
 global n, faces, v
 
+global angPartes
+global transPartes
+global statusPortRet
+
 esqdir = 0
 cimabaixo = 0
 aux1 = 0
@@ -43,6 +47,10 @@ estadoluz2 = 0
 abertoPorta = 0
 temp = 0
 angulo1 = 0
+
+angPartes = 0
+transPartes = 0.1
+statusPortRet = 0
 
 def eixos():      #desenha os eixos x e y do plano cartesiano.
     glColor3f(.9, .1, .1) # cor RGB  eixo X
@@ -657,6 +665,148 @@ def balcao():
 
     glPopMatrix()
 
+def paredesProvador():
+    #parede provador direita
+
+    glPushMatrix()
+    glTranslate(1.4, 0.0, 0.75)
+
+    glPushMatrix()
+    glColor3f(1.0, 0.0, 0.0)
+    glScale(1.2, 2.43, 0.06)
+    glTranslate(1.0, 0.52, 0.0)
+    glutSolidCube(1)
+    glPopMatrix()
+
+    glPopMatrix()
+
+    #parede provador esquerda
+    glPushMatrix()
+    glTranslate(1.4, 0.0, -0.75)
+
+    glPushMatrix()
+    glScale(1.2, 2.43, 0.06)
+    glTranslate(1.0, 0.52, 0.0)
+    glutSolidCube(1)
+    glPopMatrix()
+
+    glPopMatrix()
+
+def portaRetratil():
+    global angPartes
+    global transPartes
+    global statusPortRet
+
+    if(statusPortRet == 0):
+        for x in numpy.arange(0.1, 0.6, 0.1):
+            if(transPartes >= 0.1 and  angPartes >= 0):
+                angPartes -= x
+            if(transPartes <= 0.1):
+                transPartes = transPartes + 0.0001
+    elif(statusPortRet == 1):
+        for x in numpy.arange(0.1, 0.6, 0.1):
+            if(angPartes >= 90 and transPartes > 0):
+                transPartes = transPartes - 0.0001
+            if(angPartes <= 90):
+                angPartes += x
+
+
+    glPushMatrix()
+    glColor3f(1.0, 1.0, 1.0)
+    glScale(1.5, 2.4, 1.0)
+
+    #parte 1
+    glPushMatrix()
+    glTranslate(transPartes, 0.0, 0.0)
+
+    glPushMatrix()
+    glRotate(angPartes, 0.0, 1.0, 0.0)
+
+    glPushMatrix()
+    glScale(0.2, 1.0, 0.03)
+    glTranslate(0.0, 0.5, 0.0)
+    glutSolidCube(1)
+    glPopMatrix()
+
+    glPopMatrix()
+
+    glPopMatrix()
+
+
+    #parte 2
+    glPushMatrix()
+    glTranslate(transPartes * 3, 0.0, 0.0)
+
+    glPushMatrix()
+    glRotate(angPartes, 0.0, 1.0, 0.0)
+
+    glPushMatrix()
+    glScale(0.2, 1.0, 0.03)
+    glTranslate(0.0, 0.5, 0.0)
+    glutSolidCube(1)
+    glPopMatrix()
+
+    glPopMatrix()
+
+    glPopMatrix()
+
+    #parte 3
+    glPushMatrix()
+    glTranslate(transPartes * 5, 0.0, 0.0)
+
+    glPushMatrix()
+    glRotate(angPartes, 0.0, 1.0, 0.0)
+
+    glPushMatrix()
+    glScale(0.2, 1.0, 0.03)
+    glTranslate(0.0, 0.5, 0.0)
+    glutSolidCube(1)
+    glPopMatrix()
+
+    glPopMatrix()
+
+    glPopMatrix()
+
+    #parte 4
+    glPushMatrix()
+    glTranslate(transPartes * 7, 0.0, 0.0)
+
+    glPushMatrix()
+    glRotate(angPartes, 0.0, 1.0, 0.0)
+
+    glPushMatrix()
+    glScale(0.2, 1.0, 0.03)
+    glTranslate(0.0, 0.5, 0.0)
+    glutSolidCube(1)
+    glPopMatrix()
+
+    glPopMatrix()
+
+    glPopMatrix()
+
+    #parte 5
+    glPushMatrix()
+    glTranslate(transPartes * 9, 0.0, 0.0)
+
+    glPushMatrix()
+    glRotate(angPartes, 0.0, 1.0, 0.0)
+
+    glPushMatrix()
+
+    
+    glScale(0.2, 1.0, 0.03)
+    glTranslate(0.0, 0.5, 0.0)
+    glutSolidCube(1)
+    glPopMatrix()
+
+    glPopMatrix()
+
+    glPopMatrix()
+
+    glPopMatrix()
+
+    glutPostRedisplay()
+
 def desenho():
     global abertoPorta
     global temp
@@ -667,6 +817,41 @@ def desenho():
     eixos()
 
     balcao()
+
+    #porta provador meio
+    glPushMatrix()
+    glTranslate(2.0, 0.05, 0.75)
+
+    glPushMatrix()
+    glRotate(90, 0.0, 1.0, 0.0)
+    portaRetratil()
+    glPopMatrix()
+
+    glPopMatrix()
+
+    #porta provador direita
+    glPushMatrix()
+    glTranslate(2.0, 0.05, 2.0)
+
+    glPushMatrix()
+    glRotate(90, 0.0, 1.0, 0.0)
+    portaRetratil()
+    glPopMatrix()
+
+    glPopMatrix()
+
+    #porta provador esquerda
+    glPushMatrix()
+    glTranslate(2.0, 0.05, -0.75)
+
+    glPushMatrix()
+    glRotate(90, 0.0, 1.0, 0.0)
+    portaRetratil()
+    glPopMatrix()
+
+    glPopMatrix()
+
+    paredesProvador()
 
     ######## camisas - andar baixo
     glPushMatrix()
@@ -812,7 +997,7 @@ def desenho():
     glPopMatrix()
 
     
-    paredesSuperior()
+    #paredesSuperior()
 
     #coluna frente direita
     glPushMatrix()
@@ -1243,6 +1428,7 @@ def Teclado (tecla, x, y):
     global estadoluz0, estadoluz1, estadoluz2
     global angulo
     global abertoPorta
+    global statusPortRet
 
     print("*** Tratamento de teclas comuns")
     print(">>> Tecla: ",tecla)
@@ -1311,6 +1497,11 @@ def Teclado (tecla, x, y):
         abertoPorta += 1
         if(abertoPorta == 2):
             abertoPorta = 0
+
+    if tecla == b'm': #portas dos provadores
+        statusPortRet += 1
+        if(statusPortRet == 2):
+            statusPortRet = 0
 
 
     if tecla == b'0': # 0
