@@ -572,8 +572,6 @@ def chamaTudo():
     camisa(0, 0, -1.0, 0, 0, 0.6, 1, 0.1, 0.9)
     camisa(0, 0, -0.8, 0, 0, 0.6, 0.4, 0, 1)
     camisa(0, 0, -0.6, 0, 0, 1.5, 0, 1, 1)
-    #camisa(0, 0, -0.4, 0, 0, 1.5, 0, 1, 1)
-    #camisa(0, 0, -0.2, 0, 0, 1.5, 0, 1, 1)
     cabide(0, -0.25, -1.8, 0, 0, 2)
     cabide(0, -0.25, -1.6, 0, 0, 2)
     cabide(0, -0.25, -1.4, 0, 0, 2)
@@ -581,8 +579,23 @@ def chamaTudo():
     cabide(0, -0.25, -1.0, 0, 0, 2)
     cabide(0, -0.25, -0.8, 0, 0, 2)
     cabide(0, -0.25, -0.6, 0, 0, 2)
-    #cabide(0, -0.25, -0.4, 0, 0, 2)
-    #cabide(0, -0.25, -0.2, 0, 0, 2)
+
+def chamaTudo2ORetorno():
+    cabo(0, 0.5, -2, 0, 0, 1)
+    cabide(0, -0.25, -1.8, 0, 0, 2)
+    cabide(0, -0.25, -1.6, 0, 0, 2)
+    cabide(0, -0.25, -1.4, 0, 0, 2)
+    cabide(0, -0.25, -1.2, 0, 0, 2)
+    cabide(0, -0.25, -1.0, 0, 0, 2)
+    cabide(0, -0.25, -0.8, 0, 0, 2)
+    cabide(0, -0.25, -0.6, 0, 0, 2)
+    calca(-0.25, -0.45, -1.8)
+    calca(-0.25, -0.45, -1.6)
+    calca(-0.25, -0.45, -1.4)
+    calca(-0.25, -0.45, -1.2)
+    calca(-0.25, -0.45, -1.0)
+    calca(-0.25, -0.45, -0.8)
+    calca(-0.25, -0.45, -0.6)
 
 
 def bolsa():
@@ -594,8 +607,6 @@ def bolsa():
     glutSolidCube(0.5)
     glPopMatrix()
 
-
-
     glColor3f(1, 0, 0)
     glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
     glTranslate(0.13, 0.37, 0)  #Transtacao do objeto
@@ -603,7 +614,9 @@ def bolsa():
     glutSolidCube(0.1)
     glPopMatrix()
 
-def calca():
+def calca(translate_x, translate_y, translate_z):
+    glPushMatrix()
+    glTranslate(translate_x, translate_y, translate_z)
     #Perna esquerda
     glColor3f(0, 0, 1)
     glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
@@ -639,6 +652,8 @@ def calca():
     glRotatef(90, 1.0, 0.0, 0.0)     #Rotaçao do objeto
     glScalef(1, 0.2, 1)
     glutSolidCylinder(0.25, 0.1, 10, 10)
+    glPopMatrix()
+
     glPopMatrix()
 
 def balcao():
@@ -813,7 +828,6 @@ def desenho():
     global angulo
     global angulo1
     
-   
     eixos()
 
     balcao()
@@ -846,6 +860,7 @@ def desenho():
 
     glPushMatrix()
     glRotate(90, 0.0, 1.0, 0.0)
+    glScale(0.8, 1.0, 1.0)
     portaRetratil()
     glPopMatrix()
 
@@ -853,22 +868,83 @@ def desenho():
 
     paredesProvador()
 
+    ######## calcas andar superior frente TV
+    glPushMatrix()
+    glTranslate(0.0, 0.8, 0.2)
+    glScale(0.9, 0.9, 0.9)
+    chamaTudo2ORetorno()
+    glPopMatrix()
+
+    # na parede frente
+    glPushMatrix()
+    glTranslate(-3.5, 0.0, 1.6)
+
+    glPushMatrix()
+    glRotate(90, 0.0, 1.0, 0.0)
+
+    glPushMatrix()
+    glTranslate(0.0, 0.8, 2.2)
+    glScale(0.9, 0.9, 0.9)
+    chamaTudo2ORetorno()
+    glPopMatrix()
+
+    glPopMatrix()
+
+    glPopMatrix()
+
+    #camisas
+    glPushMatrix()
+    glTranslate(-0.4, 0.3, 0.1)
+
+    glPushMatrix()
+    glRotate(90, 0.0, 1.0, 0.0)
+
+    glPushMatrix()
+    glTranslate(-1.4, 0.5, 0.4)
+    glScale(0.9, 0.9, 0.9)
+    chamaTudo()
+    glPopMatrix()
+
+    glPopMatrix()
+
+    glPopMatrix()
+
+    # na parede frente - perto do provador
+    glPushMatrix()
+    glTranslate(-0.95, 0.0, 1.6)
+
+    glPushMatrix()
+    glRotate(90, 0.0, 1.0, 0.0)
+
+    glPushMatrix()
+    glTranslate(0.0, 0.8, 2.2)
+    glScale(0.9, 0.9, 0.9)
+    chamaTudo2ORetorno()
+    glPopMatrix()
+
+    glPopMatrix()
+
+    glPopMatrix()
+
     ######## camisas - andar baixo
     glPushMatrix()
     glRotatef(90, 0.0, 1.0, 0.0)
-    glTranslate(1.5, -1.7, 0.4)
+    glTranslate(1.5, -1.9, 0.4)
+    glScale(0.9, 0.9, 0.9)
     chamaTudo()
     glPopMatrix()
 
     glPushMatrix()
     glRotatef(90, 0.0, 1.0, 0.0)
-    glTranslate(1.5, -1.7, 1.6)
+    glTranslate(1.5, -1.9, 1.6)
+    glScale(0.9, 0.9, 0.9)
     chamaTudo()
     glPopMatrix()
 
     glPushMatrix()
     glRotatef(90, 0.0, 1.0, 0.0)
-    glTranslate(1.5, -1.7, 2.8)
+    glTranslate(1.5, -1.9, 2.8)
+    glScale(0.9, 0.9, 0.9)
     chamaTudo()
     glPopMatrix()
 
@@ -879,8 +955,8 @@ def desenho():
 
     ##camisas andar superior frente tv
     glPushMatrix()
-    #glRotatef(90, 0.0, 1.0, 0.0)
     glTranslate(-1.4, 0.5, 0.4)
+    glScale(0.9, 0.9, 0.9)
     chamaTudo()
     glPopMatrix()
 
@@ -997,7 +1073,7 @@ def desenho():
     glPopMatrix()
 
     
-    #paredesSuperior()
+    paredesSuperior()
 
     #coluna frente direita
     glPushMatrix()
