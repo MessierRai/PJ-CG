@@ -556,23 +556,6 @@ def camisa(translate_x, translate_y, translate_z, rotacao_x, rotacao_y, rotacao_
     glPopMatrix()
 
 def chamaTudo():
-    """
-    camisa(0, 0, 0, 0, 0, 0.6, 0, 0, 0)
-    camisa(0, 0, 0.2, 0, 0, 0.6, 1, 0, 0)
-    camisa(0, 0, 0.4, 0, 0, 0.6, 0, 1, 0)
-    camisa(0, 0, 0.6, 0, 0, 1.5, 0, 0, 1)
-    camisa(0, 0, 0.8, 0, 0, 1.5, 1, 1, 0)
-    camisa(0, 0, 1, 0, 0, 1.5, 0, 1, 1)
-
-    cabide(0, -0.25, 0.0, 0, 0, 2)
-    cabide(0, -0.25, 0.2, 0, 0, 2)
-    cabide(0, -0.25, 0.4, 0, 0, 2)
-    cabide(0, -0.25, 0.6, 0, 0, 2)
-    cabide(0, -0.25, 0.8, 0, 0, 2)
-    cabide(0, -0.25, 1, 0, 0, 2)
-    cabo(0, 0.5, -0.4,0, 0, 1)
-    """
-
     cabo(0, 0.5, -2, 0, 0, 1)
     camisa(0, 0, -1.8, 0, 0, 0.6, 0.7, 0.7, 0.7)
     camisa(0, 0, -1.6, 0, 0, 0.6, 0.2, 1, 0.3)
@@ -925,15 +908,109 @@ def manequim():
     glutSolidCylinder(0.25, 0.1, 10, 10)
     glPopMatrix()
 
+def puff():
+    glPushMatrix()
+    glColor3f(0.0, 0.0, 0.0)
+    glRotate(-90, 1.0, 0.0, 0.0)
+    glScale(1.0, 1.0, 0.8)
+
+    glPushMatrix()
+    glutSolidCylinder(0.5, 1.2, 8, 2)
+    glPopMatrix()
+
+    
+    glPushMatrix()
+    glColor3f(1.0, 0.0, 0.0)
+    glTranslate(0.0, 0.0, 1.2)
+    glutSolidTorus(0.1, 0.4, 20, 20)
+    glPopMatrix()
+
+    glPushMatrix()
+    glColor3f(1.0, 0.0, 0.0)
+    glTranslate(0.0, 0.0, 1.28)
+    glutSolidCylinder(0.4, 0.01, 8, 2)
+    glPopMatrix()
+
+    glPopMatrix()
+
 def desenho():
     global abertoPorta
     global temp
     global angulo
     global angulo1
     global movMan
+    global camX
+    global camZ
     
-    eixos()
+    #eixos()
 
+    #puff tv
+    glPushMatrix()
+    glTranslate(1.0, 0.1, -1.2)
+
+    glPushMatrix()
+    glScale(0.5, 0.5, 0.5)
+    puff()
+    glPopMatrix()
+
+    glPopMatrix()
+
+    #puff entrada escadas
+    glPushMatrix()
+    glTranslate(-2.8, 0.1, 0.6)
+
+    glPushMatrix()
+    glScale(0.5, 0.5, 0.5)
+    puff()
+    glPopMatrix()
+
+    glPopMatrix()
+
+    #puff oposto tv
+    glPushMatrix()
+    glTranslate(1.1, 0.1, 1.4)
+
+    glPushMatrix()
+    glScale(0.5, 0.5, 0.5)
+    puff()
+    glPopMatrix()
+
+    glPopMatrix()
+
+
+    #puff terreo fundo
+    glPushMatrix()
+    glTranslate(2.8, -2.4, -1.0)
+
+    glPushMatrix()
+    glScale(0.5, 0.5, 0.5)
+    puff()
+    glPopMatrix()
+
+    glPopMatrix()
+
+    #puff terreo meio
+    glPushMatrix()
+    glTranslate(2.8, -2.4, -0.2)
+
+    glPushMatrix()
+    glScale(0.5, 0.5, 0.5)
+    puff()
+    glPopMatrix()
+
+    glPopMatrix()
+
+    #puff terreo meio
+    glPushMatrix()
+    glTranslate(2.8, -2.4, 0.6)
+    glPushMatrix()
+    glScale(0.5, 0.5, 0.5)
+    puff()
+    glPopMatrix()
+
+    glPopMatrix()
+
+    ####manequim
     glPushMatrix()
     glScale(0.8, 0.8, 0.8)
     glTranslate(movMan[0], -2.9, movMan[2])
@@ -1336,7 +1413,7 @@ def desenho():
 
     glPopMatrix()
 
-
+    
     if(abertoPorta == 0):
         for x in numpy.arange(0.0, 0.6, 0.1):
             if(temp >= 0):
@@ -1345,8 +1422,9 @@ def desenho():
         for x in numpy.arange(0.0, 0.6, 0.1):
             if(temp <= 87):
                 temp += x
+    
                 
-    #if(angulo < 15 and abertoPorta == 0):
+    #if((camX >= 2.0 and camX <= 2.34) and (camZ <= 3.62 and camZ >= 1.7) and abertoPorta == 0):
     #    abertoPorta = 1
     #elif(angulo >= 15 and abertoPorta == 1):
     #    abertoPorta = 0
@@ -1726,12 +1804,12 @@ def Teclado (tecla, x, y):
     print(">>> Tecla: ",tecla)
 
     if tecla == b'f':  # A
-        camX = -0.5
+        camX = -2.5
         camY = 1
-        camZ = 1
-        alvoCamX = 0
+        camZ = 0.5
+        alvoCamX = 1
         alvoCamY = 1
-        alvoCamZ = -1
+        alvoCamZ = 0
 
     if tecla == b'g':
         camX = 0
@@ -1740,10 +1818,17 @@ def Teclado (tecla, x, y):
         alvoCamX = 0
         alvoCamY = -1
         alvoCamZ = -1
+
+    if tecla == b'h':
+        camX = 0
+        camY = 5
+        camZ = 0
+        alvoCamX = 0
+        alvoCamY = 4
+        alvoCamZ = -1
 	
     if tecla==chr(27): # ESC ?
         sys.exit(0)
-
 
     if tecla == b'k': 
         abertoPorta += 1
