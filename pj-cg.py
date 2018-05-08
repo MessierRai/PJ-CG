@@ -838,6 +838,100 @@ def portaRetratil():
 
     glutPostRedisplay()
 
+def manequim():
+    #cabeça
+    glColor3f(0, 0, 0)
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    # glTranslate(0.0, 0, 0.02)  #Transtacao do objeto
+    glTranslate(0.24, 1.7, 0.02)  #Transtacao do objeto
+    glutSolidSphere(0.2, 50, 50)
+    glPopMatrix()
+
+    glColor3f(1, 1, 1)
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(0.15, 1.75, 0.2)  #Transtacao do objeto
+    glutSolidSphere(0.03, 50, 50)
+    glPopMatrix()
+
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(0.3, 1.75, 0.2)  #Transtacao do objeto
+    glutSolidSphere(0.03, 50, 50)
+    glPopMatrix()
+
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(0.23, 1.6, 0.2)  #Transtacao do objeto
+    glScalef(1, 2, 0.8)
+    glutSolidSphere(0.03, 50, 50)
+    glPopMatrix()
+
+    glColor3f(0, 1, 0)
+    glPushMatrix()
+    glTranslate(0.23, 1.7, 0.22)  #Transtacao do objeto
+    glRotatef(45, 0, 0, 1)
+    glutSolidCube(0.02)
+    glPopMatrix()
+
+    #corpo
+    glColor3f(1, 0, 0)
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(0.25, 1.1, 0)  #Transtacao do objeto
+    glScale(0.4, 0.7, 0.05)
+    glutSolidCube(1.0)
+    glPopMatrix()
+
+    #manga esq
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(-0.06, 1.28, 0)  #Transtacao do objeto
+    glRotatef(-60, 0, 0, 1)
+    glScale(0.4, 0.7, 0.05)
+    glutSolidCube(0.5)
+    glPopMatrix()
+
+    #manga dir
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(0.55, 1.28, 0)  #Transtacao do objeto
+    glRotatef(60, 0, 0, 1)
+    glScale(0.4, 0.7, 0.05)
+    glutSolidCube(0.5)
+    glPopMatrix()
+
+    #Perna esquerda
+    glColor3f(0, 0, 1)
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(0.12, 0.25, 0)  #Transtacao do objeto
+    glRotatef(-5, 0.0, 0.5, 0.5)     #Rotaçao do objeto
+    glScalef(0.4, 1.9, 0.1)
+    glutSolidCube(0.5)
+    glPopMatrix()
+
+    #Perna direita
+    glColor3f(0, 0, 1)
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(0.40, 0.25, 0)  #Transtacao do objeto
+    glRotatef(5, 0.0, 0.5, 0.5)     #Rotaçao do objeto
+    glScalef(0.4, 1.9, 0.1)
+    glutSolidCube(0.5)
+    glPopMatrix()
+
+    #Base da calça
+    glColor3f(0, 0, 1)
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(0.25, 0.5, 0)  #Transtacao do objeto
+    glRotatef(90, 0.0, 0.0, 1.0)     #Rotaçao do objeto
+    glScalef(0.5, 0.40, 0)
+    glutSolidCube(1.0)
+    glPopMatrix()
+
+
+    #boca da calça
+    glColor3f(0, 0, 0)
+    glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
+    glTranslate(0.25, 0.7, 0.0)  #Transtacao do objeto
+    glRotatef(90, 1.0, 0.0, 0.0)     #Rotaçao do objeto
+    glScalef(1, 0.2, 1)
+    glutSolidCylinder(0.25, 0.1, 10, 10)
+    glPopMatrix()
+
 def desenho():
     global abertoPorta
     global temp
