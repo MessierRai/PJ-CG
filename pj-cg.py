@@ -68,6 +68,8 @@ alvoCamX = 0
 alvoCamY = -1
 alvoCamZ = -1
 
+movMan = [-0.2, -2.9, 1.9]
+
 def eixos():      #desenha os eixos x e y do plano cartesiano.
     glColor3f(.9, .1, .1) # cor RGB  eixo X
     glPushMatrix()                # Push e Pop Isolam os efeitos das transformaçoes no objeto
@@ -937,8 +939,15 @@ def desenho():
     global temp
     global angulo
     global angulo1
+    global movMan
     
     eixos()
+
+    glPushMatrix()
+    glScale(0.8, 0.8, 0.8)
+    glTranslate(movMan[0], -2.9, movMan[2])
+    manequim()
+    glPopMatrix()
 
     balcao()
 
@@ -1845,22 +1854,30 @@ def TeclasEspeciais (tecla, x, y):
     else:
         print ("Apertou... " , tecla)
     tela()
-    glutPostRedisplay()   
+    glutPostRedisplay()  
 
-# Função callback chamada para gerenciar eventos do mouse
-def ControleMouse(button, state, x, y):
-    global angulo
-    if (button == GLUT_LEFT_BUTTON):
-        if (state == GLUT_DOWN): 
-            if (angulo >= 1):
-                angulo -= 2
-		
-    if (button == GLUT_RIGHT_BUTTON):
-        if (state == GLUT_DOWN):   # Zoom-out
-            if (angulo <= 130):
-                angulo += 2
-    tela()
-    glutPostRedisplay()
+def nmX(valor):
+	if valor > 3.0:
+		valor = 3.0
+	elif valor < -3.5:
+		valor = -3.5
+
+	return valor
+
+def nmZ(valor):
+	if valor > 2.3:
+		valor = 2.3
+	elif valor < -2.2:
+		valor = -2.2
+
+	return valor
+
+def mouseSegurado(x, y):
+	global movMan
+
+	movMan = [nmX(x * 0.05), -2.9, nmZ(y * 0.05)]
+
+	glutPostRedisplay()
 
 
 # PROGRAMA PRINCIPAL
@@ -1870,7 +1887,8 @@ glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
 glutInitWindowSize(1200, 700)
 glutCreateWindow(b"Exercicio CG - RLF")
 glutDisplayFunc(tela)
-glutMouseFunc(ControleMouse)
+#glutMouseFunc(ControleMouse)
+glutMotionFunc(mouseSegurado)
 glutKeyboardFunc (Teclado)
 glutSpecialFunc (TeclasEspeciais)
 glutMainLoop()  # Inicia o laço de eventos da GLUT
