@@ -32,12 +32,12 @@ global angPartes
 global transPartes
 global statusPortRet
 
-global camX
-global camY
-global camZ
-global alvoCamX
-global alvoCamY
-global alvoCamZ
+global camerax
+global cameray
+global cameraz
+global alvoCamerax
+global alvoCameray
+global alvoCameraz
 
 esqdir = 0
 cimabaixo = 0
@@ -59,12 +59,12 @@ angPartes = 0
 transPartes = 0.1
 statusPortRet = 0
 
-camX = 0
-camY = -1
-camZ = 5
-alvoCamX = 0
-alvoCamY = -1
-alvoCamZ = -1
+camerax = 0
+cameray = -1
+cameraz = 5
+alvoCamerax = 0
+alvoCameray = -1
+alvoCameraz = -1
 
 def eixos():      #desenha os eixos x e y do plano cartesiano.
     glColor3f(.9, .1, .1) # cor RGB  eixo X
@@ -586,6 +586,8 @@ def chamaTudo():
     camisa(0, 0, -1.0, 0, 0, 0.6, 1, 0.1, 0.9)
     camisa(0, 0, -0.8, 0, 0, 0.6, 0.4, 0, 1)
     camisa(0, 0, -0.6, 0, 0, 1.5, 0, 1, 1)
+    #camisa(0, 0, -0.4, 0, 0, 1.5, 0, 1, 1)
+    #camisa(0, 0, -0.2, 0, 0, 1.5, 0, 1, 1)
     cabide(0, -0.25, -1.8, 0, 0, 2)
     cabide(0, -0.25, -1.6, 0, 0, 2)
     cabide(0, -0.25, -1.4, 0, 0, 2)
@@ -593,23 +595,8 @@ def chamaTudo():
     cabide(0, -0.25, -1.0, 0, 0, 2)
     cabide(0, -0.25, -0.8, 0, 0, 2)
     cabide(0, -0.25, -0.6, 0, 0, 2)
-
-def chamaTudo2ORetorno():
-    cabo(0, 0.5, -2, 0, 0, 1)
-    cabide(0, -0.25, -1.8, 0, 0, 2)
-    cabide(0, -0.25, -1.6, 0, 0, 2)
-    cabide(0, -0.25, -1.4, 0, 0, 2)
-    cabide(0, -0.25, -1.2, 0, 0, 2)
-    cabide(0, -0.25, -1.0, 0, 0, 2)
-    cabide(0, -0.25, -0.8, 0, 0, 2)
-    cabide(0, -0.25, -0.6, 0, 0, 2)
-    calca(-0.25, -0.45, -1.8)
-    calca(-0.25, -0.45, -1.6)
-    calca(-0.25, -0.45, -1.4)
-    calca(-0.25, -0.45, -1.2)
-    calca(-0.25, -0.45, -1.0)
-    calca(-0.25, -0.45, -0.8)
-    calca(-0.25, -0.45, -0.6)
+    #cabide(0, -0.25, -0.4, 0, 0, 2)
+    #cabide(0, -0.25, -0.2, 0, 0, 2)
 
 
 def bolsa():
@@ -621,6 +608,8 @@ def bolsa():
     glutSolidCube(0.5)
     glPopMatrix()
 
+
+
     glColor3f(1, 0, 0)
     glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
     glTranslate(0.13, 0.37, 0)  #Transtacao do objeto
@@ -628,9 +617,7 @@ def bolsa():
     glutSolidCube(0.1)
     glPopMatrix()
 
-def calca(translate_x, translate_y, translate_z):
-    glPushMatrix()
-    glTranslate(translate_x, translate_y, translate_z)
+def calca():
     #Perna esquerda
     glColor3f(0, 0, 1)
     glPushMatrix()                # Push e Pop Isolam os efeitos das transformacoes no objeto
@@ -666,8 +653,6 @@ def calca(translate_x, translate_y, translate_z):
     glRotatef(90, 1.0, 0.0, 0.0)     #Rotaçao do objeto
     glScalef(1, 0.2, 1)
     glutSolidCylinder(0.25, 0.1, 10, 10)
-    glPopMatrix()
-
     glPopMatrix()
 
 def balcao():
@@ -842,6 +827,7 @@ def desenho():
     global angulo
     global angulo1
     
+   
     eixos()
 
     balcao()
@@ -874,7 +860,6 @@ def desenho():
 
     glPushMatrix()
     glRotate(90, 0.0, 1.0, 0.0)
-    glScale(0.8, 1.0, 1.0)
     portaRetratil()
     glPopMatrix()
 
@@ -882,83 +867,22 @@ def desenho():
 
     paredesProvador()
 
-    ######## calcas andar superior frente TV
-    glPushMatrix()
-    glTranslate(0.0, 0.8, 0.2)
-    glScale(0.9, 0.9, 0.9)
-    chamaTudo2ORetorno()
-    glPopMatrix()
-
-    # na parede frente
-    glPushMatrix()
-    glTranslate(-3.5, 0.0, 1.6)
-
-    glPushMatrix()
-    glRotate(90, 0.0, 1.0, 0.0)
-
-    glPushMatrix()
-    glTranslate(0.0, 0.8, 2.2)
-    glScale(0.9, 0.9, 0.9)
-    chamaTudo2ORetorno()
-    glPopMatrix()
-
-    glPopMatrix()
-
-    glPopMatrix()
-
-    #camisas
-    glPushMatrix()
-    glTranslate(-0.4, 0.3, 0.1)
-
-    glPushMatrix()
-    glRotate(90, 0.0, 1.0, 0.0)
-
-    glPushMatrix()
-    glTranslate(-1.4, 0.5, 0.4)
-    glScale(0.9, 0.9, 0.9)
-    chamaTudo()
-    glPopMatrix()
-
-    glPopMatrix()
-
-    glPopMatrix()
-
-    # na parede frente - perto do provador
-    glPushMatrix()
-    glTranslate(-0.95, 0.0, 1.6)
-
-    glPushMatrix()
-    glRotate(90, 0.0, 1.0, 0.0)
-
-    glPushMatrix()
-    glTranslate(0.0, 0.8, 2.2)
-    glScale(0.9, 0.9, 0.9)
-    chamaTudo2ORetorno()
-    glPopMatrix()
-
-    glPopMatrix()
-
-    glPopMatrix()
-
     ######## camisas - andar baixo
     glPushMatrix()
     glRotatef(90, 0.0, 1.0, 0.0)
-    glTranslate(1.5, -1.9, 0.4)
-    glScale(0.9, 0.9, 0.9)
+    glTranslate(1.5, -1.7, 0.4)
     chamaTudo()
     glPopMatrix()
 
     glPushMatrix()
     glRotatef(90, 0.0, 1.0, 0.0)
-    glTranslate(1.5, -1.9, 1.6)
-    glScale(0.9, 0.9, 0.9)
+    glTranslate(1.5, -1.7, 1.6)
     chamaTudo()
     glPopMatrix()
 
     glPushMatrix()
     glRotatef(90, 0.0, 1.0, 0.0)
-    glTranslate(1.5, -1.9, 2.8)
-    glScale(0.9, 0.9, 0.9)
+    glTranslate(1.5, -1.7, 2.8)
     chamaTudo()
     glPopMatrix()
 
@@ -969,8 +893,8 @@ def desenho():
 
     ##camisas andar superior frente tv
     glPushMatrix()
+    #glRotatef(90, 0.0, 1.0, 0.0)
     glTranslate(-1.4, 0.5, 0.4)
-    glScale(0.9, 0.9, 0.9)
     chamaTudo()
     glPopMatrix()
 
@@ -1087,7 +1011,7 @@ def desenho():
     glPopMatrix()
 
     
-    paredesSuperior()
+    #paredesSuperior()
 
     #coluna frente direita
     glPushMatrix()
@@ -1457,12 +1381,13 @@ def tela():
     global aux1
     global aux2
 
-    global camX
-    global camY
-    global camZ
-    global alvoCamX
-    global alvoCamY
-    global alvoCamZ
+    global camerax
+    global cameray
+    global cameraz
+
+    global alvoCamerax
+    global alvoCameray
+    global alvoCameraz
 
 # AJUSTE DE APARÊNCIA
 
@@ -1500,9 +1425,10 @@ def tela():
     #    eyex, eyey, eyez = posiçao da camera
     #    alvox, alvoy, alvoz = coordenada para onde a camera olha.
     #    upx, upy, upz = indica a posiçao vertical da camera.
-    gluLookAt(camX, camY , camZ,  camX + alvoCamX, alvoCamY, camZ + alvoCamZ, 0, 1, 0)
-    print('Camera: (' + str(camX) + ',' + str(camY) + "," + str(camZ) + ')')
-    print('Alvo: (' + str(alvoCamX) +','+str(alvoCamY)+',' + str(alvoCamZ) + ')')
+    #gluLookAt(sin(esqdir) * 10, 0 + cimabaixo ,cos(esqdir) * 10, aux1,aux2,0, 0,1,0) # Especifica posição do observador e do alvo
+    gluLookAt(camerax, cameray , cameraz,  camerax + alvoCamerax, alvoCameray, cameraz + alvoCameraz, 0, 1, 0)
+    print('Camera: (' + str(camerax) + ',' + str(cameray) + "," + str(cameraz) + ')')
+    print('Alvo: (' + str(alvoCamerax) +','+str(alvoCameray)+',' + str(alvoCameraz) + ')')
 
    
     
@@ -1527,35 +1453,37 @@ def Teclado (tecla, x, y):
     global abertoPorta
     global statusPortRet
 
-    global camX
-    global camY
-    global camZ
-    global alvoCamX
-    global alvoCamY
-    global alvoCamZ
+    global camerax
+    global cameray
+    global cameraz
+
+    global alvoCamerax
+    global alvoCameray
+    global alvoCameraz
 
     print("*** Tratamento de teclas comuns")
     print(">>> Tecla: ",tecla)
 
+
     if tecla == b'f':  # A
-        camX = -0.5
-        camY = 1
-        camZ = 1
-        alvoCamX = 0
-        alvoCamY = 1
-        alvoCamZ = -1
+        camerax = -0.5
+        cameray = 1
+        cameraz = 1
+        alvoCamerax = 0
+        alvoCameray = 1
+        alvoCameraz = -1
 
     if tecla == b'g':
-        camX = 0
-        camY = -1
-        camZ = 5
-        alvoCamX = 0
-        alvoCamY = -1
-        alvoCamZ = -1
+        camerax = 0
+        cameray = -1
+        cameraz = 5
+        alvoCamerax = 0
+        alvoCameray = -1
+        alvoCameraz = -1
+
 	
     if tecla==chr(27): # ESC ?
         sys.exit(0)
-
 
     if tecla == b'k': 
         abertoPorta += 1
@@ -1602,13 +1530,37 @@ def TeclasEspeciais (tecla, x, y):
     global cimabaixo
     global angulo
 
-    global camX
-    global camY
-    global camZ
-    global alvoCamX
-    global alvoCamY
-    global alvoCamZ
+    global camerax
+    global cameray
+    global cameraz
 
+    global alvoCamerax
+    global alvoCameray
+    global alvoCameraz
+
+
+    if tecla == GLUT_KEY_F1:
+        print(">>> Tecla F1 pressionada")
+    elif tecla == GLUT_KEY_F2:
+        print(">>> Tecla F2 pressionada")
+    elif tecla == GLUT_KEY_F3:
+        print(">>> Tecla F3 pressionada")
+    elif tecla == GLUT_KEY_LEFT:
+        esqdir += 0.1
+        alvoCamerax = sin(esqdir)
+        alvoCameraz = cos(esqdir)
+    elif tecla == GLUT_KEY_RIGHT:
+        esqdir -= 0.1
+        alvoCamerax = sin(esqdir)
+        alvoCameraz = cos(esqdir)
+    elif tecla == GLUT_KEY_UP:
+        camerax += 0.1 * alvoCamerax
+        cameraz += 0.1 * alvoCameraz
+    elif tecla == GLUT_KEY_DOWN:
+        camerax -= 0.1 * alvoCamerax
+        cameraz -= 0.1 * alvoCameraz
+
+    """
     print("*** Tratamento de teclas especiais")
     print ("tecla: ", tecla)
     if tecla == GLUT_KEY_F1:
@@ -1618,21 +1570,16 @@ def TeclasEspeciais (tecla, x, y):
     elif tecla == GLUT_KEY_F3:
         print(">>> Tecla F3 pressionada")
     elif tecla == GLUT_KEY_LEFT:
-        esqdir += 0.1
-        alvoCamX = sin(esqdir)
-        alvoCamZ = cos(esqdir)
+        esqdir = esqdir - 0.1
     elif tecla == GLUT_KEY_RIGHT:
-        esqdir -= 0.1
-        alvoCamX = sin(esqdir)
-        alvoCamZ = cos(esqdir)
+        esqdir = esqdir + 0.1
     elif tecla == GLUT_KEY_UP:
-        camX += 0.1 * alvoCamX
-        camZ += 0.1 * alvoCamZ
+        cimabaixo = cimabaixo + 0.05
     elif tecla == GLUT_KEY_DOWN:
-        camX -= 0.1 * alvoCamX
-        camZ -= 0.1 * alvoCamZ
+        cimabaixo = cimabaixo - 0.05
     else:
         print ("Apertou... " , tecla)
+    """
     tela()
     glutPostRedisplay()   
 
