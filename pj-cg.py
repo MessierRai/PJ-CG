@@ -21,7 +21,7 @@ global aux2
 global angulo
 global distanciamax
 global aux
-global estadoluz0, estadoluz1, estadoluz2
+global estadoluz0, estadoluz1, estadoluz2, estadoluz3, estadoluz4
 global abertoPorta
 global temp
 global angulo1
@@ -51,6 +51,8 @@ aux = 0
 estadoluz0 = 1
 estadoluz1 = 0
 estadoluz2 = 0
+estadoluz3 = 0
+estadoluz4 = 0
 abertoPorta = 0
 temp = 0
 angulo1 = 0
@@ -963,7 +965,7 @@ def desenho():
     glPopMatrix()
 
     glPushMatrix()
-    glTranslate(-2.2, -0.1, 1.7)
+    glTranslate(0.18, 2.25, -.22)
     glutSolidSphere(0.05, 10, 10, 10)
     glPopMatrix()
 
@@ -1013,6 +1015,15 @@ def desenho():
     glTranslate(0.0, -0.1, 0.0)
     luminaria_central()
     glPopMatrix()
+
+    ##luminaria centro - andar superior
+    glPushMatrix()
+    glScale(0.7, 0.5, 0.7)
+    glTranslate(0.0, 4.8, 0.0)
+    luminaria_central()
+    glPopMatrix()
+
+
 
     glPushMatrix()
     glTranslate(0.0, 0.0, 2.0)
@@ -1211,6 +1222,26 @@ def desenho():
 
     glPopMatrix()
 
+    ############ teto
+    glColor3f(1.0, 1.0, 1.0)
+    glPushMatrix()
+    glTranslate(0.0, 4.45, 0.0)
+
+    #piso
+    glPushMatrix()
+    glRotatef(90, 1.0, 0.0, 0.0)
+
+    glPushMatrix()
+    glTranslate(0.0, -2.0, 2.0)
+    glScale(2.1, 1.38, 0.009)
+    glutSolidCube(3)
+
+    glPopMatrix()
+
+    glPopMatrix()
+
+    glPopMatrix()
+
 
     if(abertoPorta == 0):
         for x in numpy.arange(0.0, 0.6, 0.1):
@@ -1366,7 +1397,6 @@ def iluminacao_da_cena():
     posicaoLuz1=[-1.1, -0.15, 1.7, 1.0]  # Ãºltima coord como 0 pra funcionar como vetor da luz direcional
     direcao1 = [0.0, -3.0, 0.0]
 
-
     luzAmbiente2=[0.0,0.0,0.0,1.0]
     luzDifusa2=[1.0, 1.0, 1.0, 1.0]  # ; // "cor"
     luzEspecular2 = [0.0, 0.0, 0.0, 0.0]  #;// "brilho"
@@ -1378,6 +1408,32 @@ def iluminacao_da_cena():
     luzEspecular3 = [0.0, 0.0, 0.0, 0.0]  #;// "brilho"
     posicaoLuz3=[-2.2, -0.1, 1.7, 1.0]  # Ãºltima coord como 0 pra funcionar como vetor da luz direcional
     direcao3 = [0.0, -3.0, 0.0]  # direÃ§Ã£o do vetor do spot
+
+    luzAmbiente4=[0.0,0.0,0.0,1.0]
+    luzDifusa4=[0.1, 0.1, 0.1, 0.0]  # ; // "cor"
+    luzEspecular4 = [0.0, 0.0, 0.0, 0.0]  #;// "brilho"
+    posicaoLuz4=[0.18, -0.1, 0.0, 1.0]  # Ãºltima coord como 0 pra funcionar como vetor da luz direcional
+    direcao4 = [2.0, -3.0, 0.0]  # direÃ§Ã£o do vetor do spot
+
+    luzAmbiente5=[0.0,0.0,0.0,1.0]
+    luzDifusa5=[0.1, 0.1, 0.1, 0.0]  # ; // "cor"
+    luzEspecular5 = [0.0, 0.0, 0.0, 0.0]  #;// "brilho"
+    posicaoLuz5=[-0.18, -0.1, 0.0, 1.0]  # Ãºltima coord como 0 pra funcionar como vetor da luz direcional
+    direcao5 = [-2.0, -3.0, 0.0]  # direÃ§Ã£o do vetor do spot
+
+    luzAmbiente6=[0.0,0.0,0.0,1.0]
+    luzDifusa6=[0.1, 0.1, 0.1, 0.0]  # ; // "cor"
+    luzEspecular6 = [0.0, 0.0, 0.0, 0.0]  #;// "brilho"
+    posicaoLuz6=[0.18, 2.2, 0.0, 1.0]  # Ãºltima coord como 0 pra funcionar como vetor da luz direcional
+    direcao6 = [2.0, 0.2, 0.0]  # direÃ§Ã£o do vetor do spot
+
+    luzAmbiente7=[0.0,0.0,0.0,1.0]
+    luzDifusa7=[0.1, 0.1, 0.1, 0.0]  # ; // "cor"
+    luzEspecular7 = [0.0, 0.0, 0.0, 0.0]  #;// "brilho"
+    posicaoLuz7=[-0.18, 2.2, 0.0, 1.0]  # Ãºltima coord como 0 pra funcionar como vetor da luz direcional
+    direcao7 = [-2.0, 0.2, 0.0]  # direÃ§Ã£o do vetor do spot
+
+
 
     especularidade=[1.0,1.0,1.0,1.0]
     especMaterial = 60;
@@ -1423,6 +1479,38 @@ def iluminacao_da_cena():
     glLightfv(GL_LIGHT3, GL_SPOT_DIRECTION, direcao3); #direcao da luz
     glLightf(GL_LIGHT3, GL_SPOT_CUTOFF, 10); # angulo do cone, de 0 a 180.
 
+    # luminaria central - terreo
+    glLightfv(GL_LIGHT4, GL_AMBIENT, luzAmbiente4)
+    glLightfv(GL_LIGHT4, GL_DIFFUSE, luzDifusa4 )
+    glLightfv(GL_LIGHT4, GL_SPECULAR, luzEspecular4 )
+    glLightfv(GL_LIGHT4, GL_POSITION, posicaoLuz4 )
+    glLightfv(GL_LIGHT4, GL_SPOT_DIRECTION, direcao4); #direcao da luz
+    glLightf(GL_LIGHT4, GL_SPOT_CUTOFF, 60); # angulo do cone, de 0 a 180.
+
+    glLightfv(GL_LIGHT5, GL_AMBIENT, luzAmbiente5)
+    glLightfv(GL_LIGHT5, GL_DIFFUSE, luzDifusa5 )
+    glLightfv(GL_LIGHT5, GL_SPECULAR, luzEspecular5 )
+    glLightfv(GL_LIGHT5, GL_POSITION, posicaoLuz5 )
+    glLightfv(GL_LIGHT5, GL_SPOT_DIRECTION, direcao5); #direcao da luz
+    glLightf(GL_LIGHT5, GL_SPOT_CUTOFF, 60); # angulo do cone, de 0 a 180.
+
+    # luminaria central - superior
+    glLightfv(GL_LIGHT6, GL_AMBIENT, luzAmbiente6)
+    glLightfv(GL_LIGHT6, GL_DIFFUSE, luzDifusa6 )
+    glLightfv(GL_LIGHT6, GL_SPECULAR, luzEspecular6 )
+    glLightfv(GL_LIGHT6, GL_POSITION, posicaoLuz6 )
+    glLightfv(GL_LIGHT6, GL_SPOT_DIRECTION, direcao6); #direcao da luz
+    glLightf(GL_LIGHT6, GL_SPOT_CUTOFF, 50); # angulo do cone, de 0 a 180.
+
+    glLightfv(GL_LIGHT7, GL_AMBIENT, luzAmbiente7)
+    glLightfv(GL_LIGHT7, GL_DIFFUSE, luzDifusa7 )
+    glLightfv(GL_LIGHT7, GL_SPECULAR, luzEspecular7 )
+    glLightfv(GL_LIGHT7, GL_POSITION, posicaoLuz7 )
+    glLightfv(GL_LIGHT7, GL_SPOT_DIRECTION, direcao7); #direcao da luz
+    glLightf(GL_LIGHT7, GL_SPOT_CUTOFF, 50); # angulo do cone, de 0 a 180.
+
+    
+
 
     glEnable(GL_COLOR_MATERIAL)
     # Habilita o uso de iluminaÃ§Ã£o
@@ -1437,16 +1525,28 @@ def iluminacao_da_cena():
     # Habilita a luz de nÃºmero 1
     if estadoluz1 == 1:
         glEnable(GL_LIGHT1)
-    else:
-        glDisable(GL_LIGHT1)
-
-    # Habilita a luz de nÃºmero 2
-    if estadoluz2 == 1:
         glEnable(GL_LIGHT2)
         glEnable(GL_LIGHT3)
     else:
+        glDisable(GL_LIGHT1)
         glDisable(GL_LIGHT2)
         glDisable(GL_LIGHT3)
+
+    if estadoluz2 == 1:
+        glEnable(GL_LIGHT4)
+        glEnable(GL_LIGHT5)
+        
+    else:
+        glDisable(GL_LIGHT4)
+        glDisable(GL_LIGHT5)
+        
+
+    if estadoluz3 == 1:
+        glEnable(GL_LIGHT6)
+        glEnable(GL_LIGHT7)
+    else:
+        glDisable(GL_LIGHT6)
+        glDisable(GL_LIGHT7)
 
     # Habilita o depth-buffering
     glEnable(GL_DEPTH_TEST)
@@ -1522,7 +1622,7 @@ def Teclado (tecla, x, y):
     global aux2
     global esqdir
     global cimabaixo
-    global estadoluz0, estadoluz1, estadoluz2
+    global estadoluz0, estadoluz1, estadoluz2, estadoluz3, estadoluz4
     global angulo
     global abertoPorta
     global statusPortRet
@@ -1575,22 +1675,39 @@ def Teclado (tecla, x, y):
         else:
             estadoluz0 = 0
             glDisable(GL_LIGHT0)
+
     if tecla == b'1': # 1
         if estadoluz1 == 0:
             estadoluz1 = 1
             glEnable(GL_LIGHT1)
-        else:
-            estadoluz1 = 0
-            glDisable(GL_LIGHT1)
-    if tecla == b'2': # 2
-        if estadoluz2 == 0:
-            estadoluz2 = 1
             glEnable(GL_LIGHT2)
             glEnable(GL_LIGHT3)
         else:
-            estadoluz2 = 0
+            estadoluz1 = 0
+            glDisable(GL_LIGHT1)
             glDisable(GL_LIGHT2)
-            glDisable(GL_LIGHT3)       
+            glDisable(GL_LIGHT3)
+
+    if tecla == b'2': # 1
+        if estadoluz2 == 0:
+            estadoluz2 = 1
+            glEnable(GL_LIGHT4)
+            glEnable(GL_LIGHT5)
+            
+        else:
+            estadoluz2 = 0
+            glDisable(GL_LIGHT4)
+            glDisable(GL_LIGHT5)
+            
+    if tecla == b'3': # 1
+        if estadoluz3 == 0:
+            estadoluz3 = 1
+            glEnable(GL_LIGHT6)
+            glEnable(GL_LIGHT7)
+        else:
+            estadoluz3 = 0
+            glDisable(GL_LIGHT6)
+            glDisable(GL_LIGHT7)
 
 
     tela()
