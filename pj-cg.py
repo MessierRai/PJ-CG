@@ -32,6 +32,13 @@ global angPartes
 global transPartes
 global statusPortRet
 
+global camerax
+global cameray
+global cameraz
+global alvoCamerax
+global alvoCameray
+global alvoCameraz
+
 esqdir = 0
 cimabaixo = 0
 aux1 = 0
@@ -51,6 +58,13 @@ angulo1 = 0
 angPartes = 0
 transPartes = 0.1
 statusPortRet = 0
+
+camerax = 0
+cameray = -1
+cameraz = 5
+alvoCamerax = 0
+alvoCameray = -1
+alvoCameraz = -1
 
 def eixos():      #desenha os eixos x e y do plano cartesiano.
     glColor3f(.9, .1, .1) # cor RGB  eixo X
@@ -1367,6 +1381,14 @@ def tela():
     global aux1
     global aux2
 
+    global camerax
+    global cameray
+    global cameraz
+
+    global alvoCamerax
+    global alvoCameray
+    global alvoCameraz
+
 # AJUSTE DE APARÊNCIA
 
     # Especifica que a cor de fundo da janela será branca
@@ -1403,9 +1425,10 @@ def tela():
     #    eyex, eyey, eyez = posiçao da camera
     #    alvox, alvoy, alvoz = coordenada para onde a camera olha.
     #    upx, upy, upz = indica a posiçao vertical da camera.
-    gluLookAt(sin(esqdir) * 10, 0 + cimabaixo ,cos(esqdir) * 10, aux1,aux2,0, 0,1,0) # Especifica posição do observador e do alvo
-    print('Camera: (' + str( sin(esqdir) * 10) + ',' + str(cimabaixo) + "," + str(cos(esqdir) * 10) + ')')
-    print('Alvo: (' + str(aux1) +','+str(aux2)+',0)')
+    #gluLookAt(sin(esqdir) * 10, 0 + cimabaixo ,cos(esqdir) * 10, aux1,aux2,0, 0,1,0) # Especifica posição do observador e do alvo
+    gluLookAt(camerax, cameray , cameraz,  camerax + alvoCamerax, alvoCameray, cameraz + alvoCameraz, 0, 1, 0)
+    print('Camera: (' + str(camerax) + ',' + str(cameray) + "," + str(cameraz) + ')')
+    print('Alvo: (' + str(alvoCamerax) +','+str(alvoCameray)+',' + str(alvoCameraz) + ')')
 
    
     
@@ -1430,68 +1453,37 @@ def Teclado (tecla, x, y):
     global abertoPorta
     global statusPortRet
 
+    global camerax
+    global cameray
+    global cameraz
+
+    global alvoCamerax
+    global alvoCameray
+    global alvoCameraz
+
     print("*** Tratamento de teclas comuns")
     print(">>> Tecla: ",tecla)
+
+
+    if tecla == b'f':  # A
+        camerax = -0.5
+        cameray = 1
+        cameraz = 1
+        alvoCamerax = 0
+        alvoCameray = 1
+        alvoCameraz = -1
+
+    if tecla == b'g':
+        camerax = 0
+        cameray = -1
+        cameraz = 5
+        alvoCamerax = 0
+        alvoCameray = -1
+        alvoCameraz = -1
+
 	
     if tecla==chr(27): # ESC ?
         sys.exit(0)
-
-    if tecla == b'a':  # A
-        aux1 = aux1 - 0.1
-        print ("aux1 = ", aux1 )
-	
-    if tecla == b's': # S
-        aux1 = aux1 + 0.1
-        print ("aux1 = ", aux1 )
-        
-    if tecla == b'w': # W
-        aux2 = aux2 + 0.1
-        print ("aux2 = ", aux2 )
-
-    if tecla == b'z': # Z
-        aux2 = aux2 - 0.1
-        print ("aux2 = ", aux2 )
-
-    if tecla == b'r':
-        esqdir = 1.2
-        cimabaixo = 3.0
-
-    if tecla == b't':
-        esqdir = -1.2
-        cimabaixo = -2.75
-
-    if tecla == b'y':
-        esqdir = 0
-        cimabaixo = 7.44
-        aux1 = 0.7
-
-    if tecla == b'p': #porta
-        esqdir = 0.2
-        cimabaixo = -1.2
-        aux1 = 2.0
-        aux2 = -1.2
-        angulo = 15
-
-    if tecla == b'o': #andar inferior
-        esqdir = -0.0
-        cimabaixo = -1.2
-        aux1 = 0.0
-        aux2 = -1.2
-        angulo = 21
-
-    if tecla == b'i': #quarto direita
-        esqdir = 0.0
-        cimabaixo = 2.0
-        aux1 = 0.0
-        aux2 = 1.8
-        angulo = 21
-
-    if tecla == b'u': #quarto esquerda
-        esqdir = -0.4
-        cimabaixo = 2.05
-        aux1 = -3.5
-        aux2 = 3.0
-        angulo = 38
 
     if tecla == b'k': 
         abertoPorta += 1
@@ -1537,6 +1529,38 @@ def TeclasEspeciais (tecla, x, y):
     global esqdir
     global cimabaixo
     global angulo
+
+    global camerax
+    global cameray
+    global cameraz
+
+    global alvoCamerax
+    global alvoCameray
+    global alvoCameraz
+
+
+    if tecla == GLUT_KEY_F1:
+        print(">>> Tecla F1 pressionada")
+    elif tecla == GLUT_KEY_F2:
+        print(">>> Tecla F2 pressionada")
+    elif tecla == GLUT_KEY_F3:
+        print(">>> Tecla F3 pressionada")
+    elif tecla == GLUT_KEY_LEFT:
+        esqdir += 0.1
+        alvoCamerax = sin(esqdir)
+        alvoCameraz = cos(esqdir)
+    elif tecla == GLUT_KEY_RIGHT:
+        esqdir -= 0.1
+        alvoCamerax = sin(esqdir)
+        alvoCameraz = cos(esqdir)
+    elif tecla == GLUT_KEY_UP:
+        camerax += 0.1 * alvoCamerax
+        cameraz += 0.1 * alvoCameraz
+    elif tecla == GLUT_KEY_DOWN:
+        camerax -= 0.1 * alvoCamerax
+        cameraz -= 0.1 * alvoCameraz
+
+    """
     print("*** Tratamento de teclas especiais")
     print ("tecla: ", tecla)
     if tecla == GLUT_KEY_F1:
@@ -1555,6 +1579,7 @@ def TeclasEspeciais (tecla, x, y):
         cimabaixo = cimabaixo - 0.05
     else:
         print ("Apertou... " , tecla)
+    """
     tela()
     glutPostRedisplay()   
 
