@@ -1562,6 +1562,13 @@ def Teclado (tecla, x, y):
         aux2 = 1.8
         angulo = 21
 
+    if tecla == b'j': #quarto direita
+        esqdir = 0.0
+        cimabaixo = 2.0
+        aux1 = 0.0
+        aux2 = 1.8
+        angulo = 3
+
     if tecla == b'u': #quarto esquerda
         esqdir = -0.4
         cimabaixo = 2.05
