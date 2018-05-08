@@ -16,17 +16,13 @@ from PIL import Image, ImageFilter
 
 global esqdir
 global cimabaixo
-global aux1
-global aux2
 global angulo
 global distanciamax
 global aux
-global estadoluz0, estadoluz1, estadoluz2, estadoluz3, estadoluz4
+global estadoluz0, estadoluz1, estadoluz2, estadoluz3
 global abertoPorta
 global temp
 global angulo1
-
-global n, faces, v
 
 global angPartes
 global transPartes
@@ -41,10 +37,6 @@ global alvoCamZ
 
 esqdir = 0
 cimabaixo = 0
-aux1 = 0
-aux2 = 0
-aux3 = 0
-aux4 = 0
 angulo = 60
 distanciamax = 100
 aux = 0 
@@ -52,7 +44,6 @@ estadoluz0 = 1
 estadoluz1 = 0
 estadoluz2 = 0
 estadoluz3 = 0
-estadoluz4 = 0
 abertoPorta = 0
 temp = 0
 angulo1 = 0
@@ -1657,8 +1648,6 @@ def iluminacao_da_cena():
 def tela():
     global angulo
     global distanciamax
-    global aux1
-    global aux2
 
     global camX
     global camY
@@ -1721,11 +1710,7 @@ def tela():
 # Função callback chamada para gerenciar eventos de teclas normais
 # Obs.: maiusculo e minúsculo faz diferença.
 def Teclado (tecla, x, y):
-    global aux1
-    global aux2
-    global esqdir
-    global cimabaixo
-    global estadoluz0, estadoluz1, estadoluz2, estadoluz3, estadoluz4
+    global estadoluz0, estadoluz1, estadoluz2, estadoluz3
     global angulo
     global abertoPorta
     global statusPortRet
@@ -1820,7 +1805,6 @@ def Teclado (tecla, x, y):
 def TeclasEspeciais (tecla, x, y):
     global esqdir
     global cimabaixo
-    global angulo
 
     global camX
     global camY
