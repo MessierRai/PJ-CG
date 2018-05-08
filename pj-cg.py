@@ -1166,7 +1166,7 @@ def desenho():
     glPushMatrix()
     texture_id = read_texture('img/floor1.jpg')
     glEnable(GL_TEXTURE_2D)
-    #glBindTexture(GL_TEXTURE_2D, texture_id)
+    glBindTexture(GL_TEXTURE_2D, texture_id)
     glEnable(GL_TEXTURE_GEN_S)
     glEnable(GL_TEXTURE_GEN_T)
     glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR)
