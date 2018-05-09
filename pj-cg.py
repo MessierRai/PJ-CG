@@ -1135,11 +1135,6 @@ def desenho():
     chamaTudo()
     glPopMatrix()
 
-    glPushMatrix()
-    glTranslate(0.18, 2.25, -.22)
-    glutSolidSphere(0.05, 10, 10, 10)
-    glPopMatrix()
-
     ##camisas andar superior frente tv
     glPushMatrix()
     glTranslate(-1.4, 0.5, 0.4)
@@ -1195,7 +1190,6 @@ def desenho():
     glPopMatrix()
 
 
-
     glPushMatrix()
     glTranslate(0.0, 0.0, 2.0)
 ########################
@@ -1206,8 +1200,6 @@ def desenho():
     glPopMatrix()
 
 ########################
-
-
 
     ###delimitador vitrine
     glPushMatrix()
@@ -1365,7 +1357,6 @@ def desenho():
     glPushMatrix()
     glTranslate(0.0, 2.05, 0.0)
 
-    #piso
     glPushMatrix()
     glRotatef(90, 1.0, 0.0, 0.0)
 
@@ -1422,12 +1413,6 @@ def desenho():
         for x in numpy.arange(0.0, 0.6, 0.1):
             if(temp <= 87):
                 temp += x
-    
-                
-    #if((camX >= 2.0 and camX <= 2.34) and (camZ <= 3.62 and camZ >= 1.7) and abertoPorta == 0):
-    #    abertoPorta = 1
-    #elif(angulo >= 15 and abertoPorta == 1):
-    #    abertoPorta = 0
 
     ##############porta direita
     glPushMatrix()
@@ -1491,7 +1476,7 @@ def desenho():
 
     glPopMatrix()
 
-    #vidros
+    #######vidros
     glColor4f(1, 1, 1 , 0.1)
     glPushMatrix()
     glEnable(GL_BLEND)
@@ -1551,11 +1536,8 @@ def desenho():
 
     glPopMatrix()
 
-
-
     glutPostRedisplay()
 
-    
 def iluminacao_da_cena():
 
     luzAmbiente0=[0.2,0.2,0.2,0.0]
@@ -1734,9 +1716,7 @@ def tela():
     global alvoCamY
     global alvoCamZ
 
-# AJUSTE DE APARÊNCIA
 
-    # Especifica que a cor de fundo da janela será branca
     glClearColor(0,0,0,0)
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) # Limpar a tela
@@ -1744,32 +1724,11 @@ def tela():
     glMatrixMode(GL_PROJECTION) # Muda a matriz de projeçao
     glLoadIdentity()# carrega a matriz identidade
 
-    #gluPerspective(angulo, aspecto , near (perto), far(longe) )
-    #  angulo = angulo em graus na direçao y.
-    #  aspecto = deformaçao da janela. normalmente e a razao entre a largura e altura
-    #  near = a menor distancia desenhada
-    #  far = a maior distancia para que o objeto seja desenhado
     gluPerspective(angulo, 1.77, 0.1, distanciamax) # Especifica a projeção perspectiva
-
-    #glOrtho(left,right,bottom, top, near, far)
-    #  left,right,bottom, top = limites da projeçao
-    #  near = a menor distancia desenhada
-    #  far = a maior distancia para que o objeto seja desenhado 
-    #glOrtho(-3,3,-2.5,2.5,0.1,500) # Especifica a projeção paralela ortogonal
 
     glMatrixMode(GL_MODELVIEW) # Especifica sistema de coordenadas do modelo
     glLoadIdentity() # Inicializa sistema de coordenadas do modelo
 
-#CÂMERA
-
-    #Pense na câmera como um vetor que aponta para o alvo da cena. #
-    #Cada ponto desse vetor é em 3D (x, y, z)
-    # A última coordenada ajusta a posição da câmera (deitada, de pé, invertida etc)
-
-    #gluLookAt(eyex, eyey, eyez, alvox, alvoy, alvoz, upx, upy, upz)
-    #    eyex, eyey, eyez = posiçao da camera
-    #    alvox, alvoy, alvoz = coordenada para onde a camera olha.
-    #    upx, upy, upz = indica a posiçao vertical da camera.
     gluLookAt(camX, camY , camZ,  camX + alvoCamX, alvoCamY, camZ + alvoCamZ, 0, 1, 0)
     print('Camera: (' + str(camX) + ',' + str(camY) + "," + str(camZ) + ')')
     print('Alvo: (' + str(alvoCamX) +','+str(alvoCamY)+',' + str(alvoCamZ) + ')')
@@ -1783,10 +1742,6 @@ def tela():
     glFlush()                    # Aplica o desenho
 
 
-# FUNÇÕES DO TECLADO E MOUSE    
-
-# Função callback chamada para gerenciar eventos de teclas normais
-# Obs.: maiusculo e minúsculo faz diferença.
 def Teclado (tecla, x, y):
     global estadoluz0, estadoluz1, estadoluz2, estadoluz3
     global angulo
@@ -1954,9 +1909,8 @@ def mouseSegurado(x, y):
 glutInit(argv)
 glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH)
 glutInitWindowSize(1200, 700)
-glutCreateWindow(b"Exercicio CG - RLF")
+glutCreateWindow(b"Projeto CG 2017.2 - Loja")
 glutDisplayFunc(tela)
-#glutMouseFunc(ControleMouse)
 glutMotionFunc(mouseSegurado)
 glutKeyboardFunc (Teclado)
 glutSpecialFunc (TeclasEspeciais)
